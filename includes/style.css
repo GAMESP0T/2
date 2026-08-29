@@ -1,0 +1,383 @@
+/* ============================================================
+   CSSFontFace GoldHEN Host — "Cyber Carbon" theme (r5)
+   A completely different, professional look:
+   charcoal base + neon-cyan accents on a faint tech grid.
+   Conservative CSS: compatible with the old WebKit on PS4.
+   All class names used by includes/script.js are preserved.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: #07090d;
+  background-image:
+    radial-gradient(1100px 480px at 50% -12%, rgba(0, 229, 255, 0.13), transparent 62%),
+    radial-gradient(900px 420px at 88% 112%, rgba(0, 255, 157, 0.06), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(0, 229, 255, 0.025) 0px, rgba(0, 229, 255, 0.025) 1px, transparent 1px, transparent 44px),
+    repeating-linear-gradient(90deg, rgba(0, 229, 255, 0.025) 0px, rgba(0, 229, 255, 0.025) 1px, transparent 1px, transparent 44px),
+    linear-gradient(180deg, #07090d 0%, #0b1016 100%);
+  background-attachment: fixed;
+  color: #c9d4e0;
+  font-family: "Segoe UI", Arial, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ---------- Brand / header ---------- */
+.brand {
+  margin: 4px 0 2px 0;
+  letter-spacing: 10px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.shape {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.shape.sq { color: #00e5ff; }
+.shape.tr { color: #00ff9d; }
+.shape.cr { color: #b967ff; }
+.shape.xs { color: #ffd166; }
+
+h1 {
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 8px 0 2px 0;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.35), 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+h1 .accent {
+  color: #00e5ff;
+  text-shadow: 0 0 24px rgba(0, 229, 255, 0.8);
+}
+
+.sub-brand {
+  margin: 0 0 8px 0;
+  color: #6b7f94;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.pill-row {
+  margin: 12px 0 18px 0;
+}
+
+.pill {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  padding: 5px 14px;
+  border: 1px solid #22303d;
+  border-radius: 4px;
+  background: rgba(12, 17, 23, 0.85);
+  color: #8395a9;
+  font-size: 13px;
+}
+
+.pill.hot {
+  border-color: rgba(0, 229, 255, 0.55);
+  color: #7ef3ff;
+  background: rgba(0, 229, 255, 0.08);
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.45);
+}
+
+.pill.warn {
+  border-color: rgba(255, 209, 102, 0.55);
+  color: #ffd166;
+}
+
+.pill.bad {
+  border-color: rgba(255, 56, 96, 0.6);
+  color: #ff6b8a;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: rgba(11, 16, 22, 0.94);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  border-top: 2px solid rgba(0, 229, 255, 0.55);
+  border-radius: 10px;
+  padding: 28px 22px 24px 22px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 229, 255, 0.06);
+}
+
+/* ---------- Main button ---------- */
+.jb-btn {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 18px auto;
+  padding: 20px 24px;
+  background: linear-gradient(180deg, #00d9ff 0%, #0085c8 100%);
+  color: #03222b;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 6px 26px rgba(0, 217, 255, 0.35);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jb-btn .btn-main {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.jb-btn .btn-sub {
+  display: block;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.jb-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #2ce4ff 0%, #00a5e6 100%);
+  box-shadow: 0 8px 34px rgba(0, 229, 255, 0.55);
+}
+
+.jb-btn:disabled,
+.jb-btn:disabled:hover {
+  background: #121a24;
+  color: #51616f;
+  border-color: #1c2733;
+  box-shadow: none;
+  cursor: default;
+}
+
+.jb-btn.ok,
+.jb-btn.ok:hover:disabled {
+  background: linear-gradient(180deg, #00ff9d 0%, #00b36b 100%);
+  color: #03251a;
+  box-shadow: 0 8px 30px rgba(0, 255, 157, 0.35);
+}
+
+.jb-btn.err,
+.jb-btn.err:hover:disabled {
+  background: linear-gradient(180deg, #ff3860 0%, #c9184a 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 30px rgba(255, 56, 96, 0.4);
+}
+
+/* ---------- Phase pills ---------- */
+.phase-row {
+  margin: 0 auto 14px auto;
+  max-width: 480px;
+}
+
+.phase {
+  display: inline-block;
+  min-width: 96px;
+  margin: 0 4px 8px 4px;
+  padding: 7px 12px;
+  border: 1px solid #22303d;
+  border-radius: 4px;
+  background: rgba(8, 12, 17, 0.85);
+  color: #5c6e82;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.phase.active {
+  border-color: rgba(0, 229, 255, 0.6);
+  color: #7ef3ff;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+  -webkit-animation: pulse 1.1s ease-in-out infinite;
+  animation: pulse 1.1s ease-in-out infinite;
+}
+
+@-webkit-keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.35); }
+  50%      { box-shadow: 0 0 0 7px rgba(0, 229, 255, 0); }
+}
+
+.phase.done {
+  border-color: rgba(0, 255, 157, 0.55);
+  background: rgba(0, 255, 157, 0.08);
+  color: #4dffb8;
+}
+
+.phase.fail {
+  border-color: rgba(255, 56, 96, 0.6);
+  background: rgba(255, 56, 96, 0.08);
+  color: #ff6b8a;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.35); }
+  50%      { box-shadow: 0 0 0 7px rgba(0, 229, 255, 0); }
+}
+
+/* ---------- Status message ---------- */
+.status {
+  margin: 0 auto 16px auto;
+  max-width: 620px;
+  min-height: 22px;
+  padding: 9px 14px;
+  border-radius: 6px;
+  background: rgba(8, 12, 17, 0.85);
+  border: 1px solid #1c2733;
+  color: #8395a9;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.status.running {
+  border-color: rgba(0, 229, 255, 0.55);
+  color: #a8f4ff;
+}
+
+.status.ok {
+  border-color: rgba(0, 255, 157, 0.5);
+  background: rgba(0, 255, 157, 0.07);
+  color: #6fffc4;
+}
+
+.status.err {
+  border-color: rgba(255, 56, 96, 0.55);
+  background: rgba(255, 56, 96, 0.08);
+  color: #ff9db4;
+}
+
+/* ---------- Options row ---------- */
+.opts {
+  margin: 0 auto 16px auto;
+  max-width: 620px;
+  font-size: 13px;
+  color: #8395a9;
+}
+
+.opt {
+  display: inline-block;
+  margin: 0 10px 6px 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.opt-sep {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: #22303d;
+  margin: 0 10px 0 2px;
+  vertical-align: middle;
+}
+
+.opt input {
+  vertical-align: middle;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #3d4d5d;
+  border-radius: 50%;
+  background-color: #0b1016;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+input[type="radio"]:checked {
+  background-color: #00d9ff;
+  border-color: #00d9ff;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #3d4d5d;
+  border-radius: 4px;
+  background-color: #0b1016;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #00d9ff;
+  border-color: #00d9ff;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "\2713";
+  position: absolute;
+  top: -4px;
+  left: 1px;
+  color: #03222b;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.opt.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.opt.disabled input {
+  cursor: default;
+}
+
+/* ---------- Console ---------- */
+#console {
+  margin: 0 auto;
+  max-width: 620px;
+  height: 230px;
+  overflow-y: auto;
+  background: #03060a;
+  color: #00ff9d;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12.5px;
+  line-height: 1.45;
+  padding: 12px 14px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid rgba(0, 255, 157, 0.22);
+  border-radius: 6px;
+  direction: ltr;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 18px;
+  color: #3d4d5d;
+  font-size: 12px;
+}
+
+footer .ver {
+  color: #6b7f94;
+}

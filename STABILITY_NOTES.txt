@@ -1,0 +1,45 @@
+PS4 CSSFontFace GoldHEN Host — Stability Build r5
+===================================================
+
+Changes over r4 (2026-08-15):
+- Already-jailbroken probe (panic killer #1): before the kernel race the
+  host calls setuid(0) via ROP. setuid(0) is harmless when unprivileged
+  (returns -1) and only succeeds once the ucred was patched, so:
+  * If the console was already jailbroken earlier in this boot (GoldHEN is
+    persistent until reboot), the host SKIPS the entire double-free kernel
+    race and just (re)launches the GoldHEN loader. Re-running that race on
+    an already-corrupted allocator is the classic "console powers off"
+    (kernel panic) trigger — it is now impossible on repeat visits.
+  * In the normal path, kexec/kernel_patches are never re-applied if
+    setuid(0) already succeeds.
+- Targeted warm cache: r4 pre-fetched payload.bin + ALL 16 kernel patch
+  files during the countdown. On the PS4's slow browser that often was not
+  finished before the countdown expired, leaving a post-jailbreak fetch
+  window. r5 pre-fetches only payload.bin + the ONE patch file the detected
+  firmware needs (verified against the names declared in constants.js) and
+  the start flow waits up to 3s for it — so post-jailbreak network I/O is
+  genuinely zero.
+- Watchdog heartbeat from workers: every worker RPC response now counts as
+  progress, so long kernel races (fast RPC round-trips, no UI updates) can
+  never trip the 45s stall watchdog mid-chain. Reloading mid-chain leaves
+  the kernel half-corrupted and makes the next attempt far more likely to
+  panic — this closes that window.
+- MAX_ATTEMPTS = 3 (1 initial + 2 auto retries), matching the documented
+  retry policy.
+
+Unchanged on purpose (r4 note still applies):
+- The firmware-specific exploit primitives, patch binaries and the kernel
+  chains (Lapse/NetCtrl) were intentionally left untouched — they are
+  timing-sensitive and must not be altered without per-firmware testing.
+
+Still important:
+- The double-free races themselves are probabilistic. A lost race in the
+  worst way can still panic the kernel on the FIRST run of a boot — the
+  host cannot fully prevent that, but it now never *re-triggers* it on
+  repeat visits, which was the dominant failure mode in practice.
+- If the PS4 powers off/reboots because of a kernel panic, the browser
+  cannot auto-retry after the reboot: restart the browser/host and try
+  again (one fresh run from a clean kernel state is the most reliable).
+- For best stability: use a wired LAN connection, serve the host from the
+  same network, and if several retries fail in a row close/reopen the PS4
+  browser app (this resets WebKit state) before retrying.
